@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Local Essential Delivery System | Landing Page</title>
+  <meta name="description" content="Smart Local Essential Delivery System — fast, reliable, and smart essential delivery for your neighborhood. Panels for Admin, Shop Owner, User, and Delivery Partner with Login & Register." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.86);
+      --muted: rgba(255,255,255,.66);
+      --shadow: 0 18px 70px rgba(0,0,0,.45);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+      --brand1:#22c55e;
+      --brand2:#38bdf8;
+      --brand3:#a78bfa;
+      --brand4:#fb7185;
+      --radius: 22px;
+      --radius2: 16px;
+      --ring: 0 0 0 6px rgba(56,189,248,.12);
+    }
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      background: radial-gradient(1200px 800px at 15% -10%, rgba(56,189,248,.20), transparent 55%),
+                  radial-gradient(900px 600px at 105% 10%, rgba(167,139,250,.18), transparent 60%),
+                  radial-gradient(900px 600px at 40% 115%, rgba(34,197,94,.14), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    /* Grain for modern depth */
+    .grain::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.18;
+      z-index:0;
+    }
+
+    /* Glass */
+    .glass{
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius);
+    }
+    .glass2{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius2);
+    }
+
+    /* Smooth in */
+    @keyframes floaty {
+      0%,100%{ transform: translateY(0px)}
+      50%{ transform: translateY(-10px)}
+    }
+    @keyframes shine {
+      0%{ transform: translateX(-120%) rotate(12deg); opacity:.0}
+      30%{ opacity:.9}
+      60%{ opacity:.25}
+      100%{ transform: translateX(140%) rotate(12deg); opacity:0}
+    }
+    @keyframes pop {
+      0%{ transform: translateY(12px) scale(.98); opacity:0}
+      100%{ transform: translateY(0) scale(1); opacity:1}
+    }
+    .reveal { opacity:0; transform: translateY(14px); }
+    .reveal.in { animation: pop .7s cubic-bezier(.2,.8,.2,1) forwards; }
+
+    /* Navbar */
+    .navbar-wrap{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-inner{
+      border-radius: 999px;
+      padding: 10px 12px;
+    }
+    .nav-linkx{
+      color: rgba(255,255,255,.72);
+      text-decoration:none;
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: all .2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border: 1px solid transparent;
+    }
+    .nav-linkx:hover{
+      color: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.10);
+    }
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.8);
+      font-size: 12px;
+      letter-spacing:.02em;
+    }
+    .brand-badge{
+      background: radial-gradient(120% 120% at 30% 20%, rgba(34,197,94,.35), rgba(56,189,248,.22), rgba(167,139,250,.18), rgba(251,113,133,.12));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+
+    /* Buttons */
+    .btnx{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      text-decoration:none;
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btnx:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+    }
+    .btnx:active{ transform: translateY(0px) scale(.99); }
+    .btn-primaryx{
+      border-color: rgba(34,197,94,.35);
+      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(56,189,248,.72));
+      color: #06121a;
+      box-shadow: 0 14px 40px rgba(34,197,94,.16);
+      font-weight: 700;
+    }
+    .btn-primaryx:hover{
+      background: linear-gradient(135deg, rgba(34,197,94,1), rgba(56,189,248,.82));
+    }
+    .btn-ghostx{
+      background: transparent;
+    }
+
+    /* Hero */
+    .hero{
+      position: relative;
+      z-index: 1;
+    }
+    .hero-card{
+      overflow:hidden;
+      position:relative;
+    }
+    .hero-card::after{
+      content:"";
+      position:absolute;
+      top: -40%;
+      left: -30%;
+      width: 70%;
+      height: 240%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: translateX(-120%) rotate(12deg);
+      animation: shine 7s ease-in-out infinite;
+      pointer-events:none;
+      opacity:.35;
+    }
+    .hero-title{
+      letter-spacing:-0.03em;
+      line-height:1.05;
+    }
+    .hero-sub{
+      color: var(--muted);
+    }
+
+    /* Carousel */
+    .carousel,
+    .carousel-inner,
+    .carousel-item{
+      height: 420px;
+    }
+    @media (max-width: 992px){
+      .carousel,
+      .carousel-inner,
+      .carousel-item{
+        height: 320px;
+      }
+    }
+    .carousel-item{
+      position:relative;
+      overflow:hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    .carousel-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter: saturate(1.08) contrast(1.04);
+      transform: scale(1.02);
+    }
+    .carousel-item::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(7,10,18,.05), rgba(7,10,18,.60));
+      z-index:1;
+    }
+    .carousel-caption{
+      z-index:2;
+      text-align:left;
+      left: 6%;
+      right: 6%;
+      bottom: 8%;
+    }
+    .carousel-caption h5{
+      font-weight: 800;
+      letter-spacing:-0.02em;
+      text-shadow: 0 16px 40px rgba(0,0,0,.55);
+    }
+    .carousel-caption p{
+      color: rgba(255,255,255,.80);
+      text-shadow: 0 16px 40px rgba(0,0,0,.55);
+      max-width: 52ch;
+    }
+
+    /* Feature cards */
+    .fcard{
+      position:relative;
+      overflow:hidden;
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+    .fcard:hover{
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+    }
+    .ficon{
+      width: 44px; height: 44px;
+      display:grid; place-items:center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.07);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .kpi{
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding: 14px 16px;
+    }
+
+    /* Steps */
+    .step{
+      position:relative;
+      padding-left: 54px;
+    }
+    .step::before{
+      content: attr(data-step);
+      position:absolute;
+      left:0; top:0;
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      display:grid; place-items:center;
+      font-weight: 800;
+      color: rgba(6,18,26,.92);
+      background: linear-gradient(135deg, rgba(56,189,248,1), rgba(167,139,250,.9));
+      box-shadow: 0 14px 40px rgba(56,189,248,.15);
+    }
+
+    /* Auth modal */
+    .modal-content{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: rgba(255,255,255,.92);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .form-control, .form-select{
+      background: rgba(255,255,255,.06) !important;
+      border: 1px solid rgba(255,255,255,.14) !important;
+      color: rgba(255,255,255,.92) !important;
+      border-radius: 14px !important;
+      padding: 12px 12px !important;
+      box-shadow: none !important;
+    }
+    .form-control:focus, .form-select:focus{
+      border-color: rgba(56,189,248,.55) !important;
+      box-shadow: var(--ring) !important;
+      outline:none !important;
+    }
+    .form-label{ color: rgba(255,255,255,.70) !important; font-weight: 600; }
+    .form-text{ color: rgba(255,255,255,.62) !important; }
+    .nav-pills .nav-link{
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.78);
+      padding: 10px 12px;
+    }
+    .nav-pills .nav-link.active{
+      background: linear-gradient(135deg, rgba(34,197,94,.95), rgba(56,189,248,.70));
+      color: #06121a;
+      border-color: rgba(255,255,255,.18);
+      font-weight: 800;
+    }
+
+    /* Toast */
+    .toast{
+      background: rgba(18,24,40,.75) !important;
+      border: 1px solid rgba(255,255,255,.14) !important;
+      color: rgba(255,255,255,.9) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px !important;
+      box-shadow: 0 18px 70px rgba(0,0,0,.45);
+    }
+
+    /* Footer */
+    .footer-link{ color: rgba(255,255,255,.70); text-decoration:none; }
+    .footer-link:hover{ color: rgba(255,255,255,.92); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; scroll-behavior:auto !important; }
+      .grain::before{ display:none !important; }
+    }
+  </style>
+</head>
+
+<body class="grain">
+  <!-- Top Nav -->
+  <div class="navbar-wrap">
+    <div class="container py-3">
+      <div class="glass nav-inner px-3">
+        <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
+          <a href="#home" class="d-inline-flex align-items-center gap-2 text-decoration-none">
+            <div class="brand-badge rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
+              <span class="d-inline-grid place-items-center" style="width:30px;height:30px;border-radius:12px;background:rgba(6,18,26,.22);border:1px solid rgba(255,255,255,.14);">
+                <i class="fa-solid fa-bolt" style="color:#d9f99d"></i>
+              </span>
+              <div class="d-flex flex-column lh-1">
+                <span class="fw-extrabold" style="color:rgba(255,255,255,.92); font-weight:800;">Smart Local</span>
+                <span class="small" style="color:rgba(255,255,255,.70); font-size:12px;">Essential Delivery</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="d-none d-lg-flex align-items-center gap-1">
+            <a class="nav-linkx" href="#features"><i class="fa-solid fa-sparkles"></i> Features</a>
+            <a class="nav-linkx" href="#how"><i class="fa-solid fa-route"></i> How it works</a>
+            <a class="nav-linkx" href="#panels"><i class="fa-solid fa-grid-2"></i> Panels</a>
+            <a class="nav-linkx" href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+            <span class="pill ms-2"><i class="fa-solid fa-shield-halved me-1"></i> Secure • Fast • Local</span>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <button class="btnx btn-ghostx d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+              <i class="fa-solid fa-bars"></i> Menu
+            </button>
+            <button class="btnx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+            <button class="btnx btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register">
+              <i class="fa-solid fa-user-plus"></i> Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" style="background: rgba(11,18,32,.92); backdrop-filter: blur(14px); border-left:1px solid rgba(255,255,255,.10);">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-2">
+      <a class="nav-linkx" href="#features" data-bs-dismiss="offcanvas"><i class="fa-solid fa-sparkles"></i> Features</a>
+      <a class="nav-linkx" href="#how" data-bs-dismiss="offcanvas"><i class="fa-solid fa-route"></i> How it works</a>
+      <a class="nav-linkx" href="#panels" data-bs-dismiss="offcanvas"><i class="fa-solid fa-grid-2"></i> Panels</a>
+      <a class="nav-linkx" href="#faq" data-bs-dismiss="offcanvas"><i class="fa-solid fa-circle-question"></i> FAQ</a>
+      <hr style="border-color: rgba(255,255,255,.12);">
+      <button class="btnx w-100" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login" data-bs-dismiss="offcanvas">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </button>
+      <button class="btnx btn-primaryx w-100" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register" data-bs-dismiss="offcanvas">
+        <i class="fa-solid fa-user-plus"></i> Register
+      </button>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header id="home" class="hero">
+    <div class="container py-4 py-lg-5 position-relative" style="z-index:1;">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-card glass p-4 p-lg-5 reveal">
+            <div class="d-flex align-items-center gap-2 flex-wrap mb-3">
+              <span class="pill"><i class="fa-solid fa-location-dot me-1"></i> Hyperlocal Delivery</span>
+              <span class="pill"><i class="fa-solid fa-wand-magic-sparkles me-1"></i> Smart Routing</span>
+              <span class="pill"><i class="fa-solid fa-clock me-1"></i> Fast Essentials</span>
+            </div>
+
+            <h1 class="hero-title display-5 mb-3" style="font-weight: 900;">
+              Smart Local Essential Delivery System
+            </h1>
+            <p class="hero-sub fs-5 mb-4">
+              A modern platform for <b>users</b> to order essentials, <b>shop owners</b> to manage inventory & orders,
+              <b>delivery partners</b> to deliver efficiently, and <b>admins</b> to monitor everything in one place.
+            </p>
+
+            <div class="d-flex flex-column flex-sm-row gap-2">
+              <a href="#panels" class="btnx btn-primaryx">
+                <i class="fa-solid fa-rocket"></i> Explore Panels
+              </a>
+              <a href="#features" class="btnx">
+                <i class="fa-solid fa-layer-group"></i> View Features
+              </a>
+              <button class="btnx btn-ghostx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login">
+                <i class="fa-solid fa-user-shield"></i> Get Started
+              </button>
+            </div>
+
+            <div class="mt-4 d-grid gap-2">
+              <div class="row g-2">
+                <div class="col-6">
+                  <div class="kpi">
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ficon" style="width:40px;height:40px;border-radius:14px;">
+                        <i class="fa-solid fa-bolt" style="color: #bef264;"></i>
+                      </div>
+                      <div>
+                        <div class="fw-extrabold" style="font-weight:800;">Real-time</div>
+                        <div class="small" style="color:rgba(255,255,255,.66)">Order updates</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="kpi">
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="ficon" style="width:40px;height:40px;border-radius:14px;">
+                        <i class="fa-solid fa-shield-halved" style="color: #7dd3fc;"></i>
+                      </div>
+                      <div>
+                        <div class="fw-extrabold" style="font-weight:800;">Secure</div>
+                        <div class="small" style="color:rgba(255,255,255,.66)">Role-based access</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="small" style="color: rgba(255,255,255,.60);">
+                Tip: Use Login/Register to simulate panel access (UI demo).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="glass p-3 p-lg-3 reveal" style="animation-delay:.08s;">
+            <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200" data-bs-pause="false">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img alt="Local essentials delivery" src="https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=1600&q=80">
+                  <div class="carousel-caption">
+                    <h5 class="mb-2">Essentials delivered, locally</h5>
+                    <p class="mb-0">Order groceries, medicine, and daily needs from nearby shops with smart ETA updates.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img alt="Shop management dashboard" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80">
+                  <div class="carousel-caption">
+                    <h5 class="mb-2">Shop owner control center</h5>
+                    <p class="mb-0">Manage products, stock, pricing, offers, and orders with a clean workflow.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img alt="Delivery partner navigation" src="https://images.unsplash.com/photo-1524660988542-c440de9c0fde?auto=format&fit=crop&w=1600&q=80">
+                  <div class="carousel-caption">
+                    <h5 class="mb-2">Smarter delivery routes</h5>
+                    <p class="mb-0">Assign deliveries, optimize route order, and track status from pickup to doorstep.</p>
+                  </div>
+                </div>
+              </div>
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="pill"><i class="fa-solid fa-truck-fast me-1"></i> Fast Dispatch</span>
+              <span class="pill"><i class="fa-solid fa-bell me-1"></i> Notifications</span>
+              <span class="pill"><i class="fa-solid fa-receipt me-1"></i> Order History</span>
+              <span class="pill"><i class="fa-solid fa-chart-line me-1"></i> Analytics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section id="features" class="py-4 py-lg-5">
+    <div class="container">
+      <div class="row g-4 align-items-end mb-1">
+        <div class="col-lg-7">
+          <div class="reveal">
+            <div class="pill d-inline-flex align-items-center gap-2 mb-3">
+              <i class="fa-solid fa-sparkles"></i> Advanced Features
+            </div>
+            <h2 class="fw-extrabold" style="font-weight: 900; letter-spacing:-0.02em;">
+              Built for real-world local delivery
+            </h2>
+            <p class="mt-2" style="color: rgba(255,255,255,.66); max-width: 68ch;">
+              A single system that connects customers, shops, delivery partners, and admins with role-based panels,
+              smart workflow, and responsive UX across mobile and desktop.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="glass2 p-3 reveal" style="animation-delay:.05s;">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div class="small" style="color: rgba(255,255,255,.66)">System status</div>
+                <div class="fw-extrabold" style="font-weight:900;">Demo Online</div>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="pill"><i class="fa-solid fa-circle" style="color:#22c55e"></i> Live UI</span>
+                <button class="btnx" type="button" onclick="scrollToId('panels')">
+                  <i class="fa-solid fa-grid-2"></i> Panels
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3 mt-2">
+        <div class="col-md-6 col-lg-4">
+          <div class="glass2 p-4 fcard reveal">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon">
+                <i class="fa-solid fa-user-shield" style="color:#7dd3fc;"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Role-based Panels</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">Admin, Shop Owner, User, and Delivery Partner access with secure separation.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.03s;">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon">
+                <i class="fa-solid fa-bolt" style="color:#bef264;"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Fast Ordering</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">Quick search, clean cart flow, and instant confirmation experience.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.06s;">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon">
+                <i class="fa-solid fa-route" style="color:#a78bfa;"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Smart Delivery Flow</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">Pickup → in transit → delivered statuses with optimized assignment support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="glass2 p-4 fcard reveal">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon">
+                <i class="fa-solid fa-boxes-stacked" style="color:#fb7185;"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Inventory & Offers</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">Stock tracking, pricing updates, and local promotions for higher sales.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.03s;">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon">
+                <i class="fa-solid fa-bell" style="color:#fbbf24;"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Notifications</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">Order updates and action alerts for all roles to reduce delays.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.06s;">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon">
+                <i class="fa-solid fa-chart-line" style="color:#34d399;"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Analytics Ready</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">Admin insights for orders, shops, delivery performance, and growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="py-4 py-lg-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="glass p-4 p-lg-5 reveal">
+            <div class="pill d-inline-flex align-items-center gap-2 mb-3">
+              <i class="fa-solid fa-route"></i> How it works
+            </div>
+            <h2 class="fw-extrabold mb-3" style="font-weight: 900; letter-spacing:-0.02em;">
+              Simple flow, optimized for speed
+            </h2>
+
+            <div class="d-grid gap-3">
+              <div class="step" data-step="1">
+                <div class="fw-bold">User places an order</div>
+                <div style="color: rgba(255,255,255,.66);">Browse essentials, add to cart, choose address, pay on delivery/online (future).</div>
+              </div>
+              <div class="step" data-step="2">
+                <div class="fw-bold">Shop owner confirms & packs</div>
+                <div style="color: rgba(255,255,255,.66);">Accept the order, pack items, update availability if needed.</div>
+              </div>
+              <div class="step" data-step="3">
+                <div class="fw-bold">Delivery partner picks up & delivers</div>
+                <div style="color: rgba(255,255,255,.66);">Pickup verification, route view, status updates, proof of delivery.</div>
+              </div>
+              <div class="step" data-step="4">
+                <div class="fw-bold">Admin monitors & improves</div>
+                <div style="color: rgba(255,255,255,.66);">Manage users/shops/partners, resolve issues, view analytics.</div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+              <button class="btnx btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register">
+                <i class="fa-solid fa-user-plus"></i> Create Account
+              </button>
+              <a class="btnx" href="#faq">
+                <i class="fa-solid fa-circle-question"></i> Read FAQ
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="glass p-4 p-lg-5 reveal" style="animation-delay:.05s;">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+              <div class="pill d-inline-flex align-items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Interactive Demo
+              </div>
+              <div class="pill">
+                <i class="fa-solid fa-hand-pointer me-1"></i> Click panels below
+              </div>
+            </div>
+
+            <h3 class="fw-extrabold mb-2" style="font-weight: 900; letter-spacing:-0.02em;">Choose your role</h3>
+            <p class="mb-3" style="color: rgba(255,255,255,.66);">
+              This landing page includes a UI demo for role selection with Login/Register. You can connect it to your backend later.
+            </p>
+
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="glass2 p-3 d-flex align-items-center justify-content-between">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="ficon"><i class="fa-solid fa-user-gear" style="color:#7dd3fc"></i></div>
+                    <div>
+                      <div class="fw-bold">Selected role</div>
+                      <div id="selectedRoleText" style="color: rgba(255,255,255,.66);">User (default)</div>
+                    </div>
+                  </div>
+                  <span id="selectedRoleBadge" class="pill"><i class="fa-solid fa-circle me-1" style="color:#22c55e"></i> Ready</span>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btnx" type="button" data-role="Admin"><i class="fa-solid fa-shield-halved"></i> Admin Panel</button>
+                  <button class="btnx" type="button" data-role="Shop Owner"><i class="fa-solid fa-store"></i> Shop Owner</button>
+                  <button class="btnx" type="button" data-role="User"><i class="fa-solid fa-user"></i> User</button>
+                  <button class="btnx" type="button" data-role="Delivery Partner"><i class="fa-solid fa-truck-fast"></i> Delivery Partner</button>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="glass2 p-3">
+                  <div class="d-flex align-items-start gap-3">
+                    <div class="ficon" style="background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.25);">
+                      <i class="fa-solid fa-circle-check" style="color:#22c55e;"></i>
+                    </div>
+                    <div>
+                      <div class="fw-bold mb-1">Next step</div>
+                      <div id="nextStepText" style="color: rgba(255,255,255,.66);">Login to access the User Panel demo experience.</div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column flex-sm-row gap-2 mt-3">
+                    <button class="btnx btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login">
+                      <i class="fa-solid fa-right-to-bracket"></i> Login as <span id="loginRoleInline">User</span>
+                    </button>
+                    <button class="btnx" type="button" onclick="openAuth('register')">
+                      <i class="fa-solid fa-user-plus"></i> Register
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Panels -->
+  <section id="panels" class="py-4 py-lg-5">
+    <div class="container">
+      <div class="reveal mb-3">
+        <div class="pill d-inline-flex align-items-center gap-2 mb-3">
+          <i class="fa-solid fa-grid-2"></i> Panels Overview
+        </div>
+        <h2 class="fw-extrabold" style="font-weight: 900; letter-spacing:-0.02em;">All roles. One platform.</h2>
+        <p style="color: rgba(255,255,255,.66); max-width: 70ch;">Below are the recommended modules for each panel. Connect to your database/API later (Node/PHP/Django/etc.).</p>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-xl-3">
+          <div class="glass2 p-4 fcard reveal">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <div class="ficon"><i class="fa-solid fa-shield-halved" style="color:#7dd3fc"></i></div>
+              <div>
+                <div class="fw-extrabold" style="font-weight:900;">Admin Panel</div>
+                <div class="small" style="color: rgba(255,255,255,.66);">Control & analytics</div>
+              </div>
+            </div>
+            <ul class="mb-3" style="color: rgba(255,255,255,.66); padding-left: 18px;">
+              <li>User/shop/partner management</li>
+              <li>Order monitoring & disputes</li>
+              <li>Reports & performance</li>
+              <li>Settings & RBAC</li>
+            </ul>
+            <button class="btnx w-100" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login" onclick="setRole('Admin')">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.03s;">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <div class="ficon"><i class="fa-solid fa-store" style="color:#bef264"></i></div>
+              <div>
+                <div class="fw-extrabold" style="font-weight:900;">Shop Owner</div>
+                <div class="small" style="color: rgba(255,255,255,.66);">Orders & inventory</div>
+              </div>
+            </div>
+            <ul class="mb-3" style="color: rgba(255,255,255,.66); padding-left: 18px;">
+              <li>Catalog & stock updates</li>
+              <li>Accept/pack orders</li>
+              <li>Promos & pricing</li>
+              <li>Sales summary</li>
+            </ul>
+            <button class="btnx w-100" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login" onclick="setRole('Shop Owner')">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.06s;">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <div class="ficon"><i class="fa-solid fa-user" style="color:#a78bfa"></i></div>
+              <div>
+                <div class="fw-extrabold" style="font-weight:900;">User Panel</div>
+                <div class="small" style="color: rgba(255,255,255,.66);">Order essentials</div>
+              </div>
+            </div>
+            <ul class="mb-3" style="color: rgba(255,255,255,.66); padding-left: 18px;">
+              <li>Browse nearby shops</li>
+              <li>Cart & checkout</li>
+              <li>Order tracking</li>
+              <li>Ratings & support</li>
+            </ul>
+            <button class="btnx w-100 btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register" onclick="setRole('User')">
+              <i class="fa-solid fa-user-plus"></i> Register
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+          <div class="glass2 p-4 fcard reveal" style="animation-delay:.09s;">
+            <div class="d-flex align-items-center gap-3 mb-2">
+              <div class="ficon"><i class="fa-solid fa-truck-fast" style="color:#fb7185"></i></div>
+              <div>
+                <div class="fw-extrabold" style="font-weight:900;">Delivery Partner</div>
+                <div class="small" style="color: rgba(255,255,255,.66);">Deliver smarter</div>
+              </div>
+            </div>
+            <ul class="mb-3" style="color: rgba(255,255,255,.66); padding-left: 18px;">
+              <li>Accept delivery tasks</li>
+              <li>Route & pickup proof</li>
+              <li>Status updates</li>
+              <li>Earnings summary</li>
+            </ul>
+            <button class="btnx w-100" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login" onclick="setRole('Delivery Partner')">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass p-4 mt-3 reveal">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-8">
+            <div class="d-flex align-items-start gap-3">
+              <div class="ficon" style="background: rgba(56,189,248,.12); border-color: rgba(56,189,248,.25);">
+                <i class="fa-solid fa-code" style="color:#7dd3fc"></i>
+              </div>
+              <div>
+                <h5 class="mb-1 fw-bold">Production-ready structure</h5>
+                <p class="mb-0" style="color: rgba(255,255,255,.66);">
+                  This is a landing page + UI flow demo. Connect the form submit actions to your backend API endpoints for authentication and dashboard routing.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 d-flex justify-content-lg-end gap-2">
+            <button class="btnx" type="button" onclick="showToast('Tip: Connect Login/Register to your backend API and redirect users based on role.')">
+              <i class="fa-solid fa-lightbulb"></i> Setup Tip
+            </button>
+            <button class="btnx btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register">
+              <i class="fa-solid fa-rocket"></i> Start Now
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-4 py-lg-5">
+    <div class="container">
+      <div class="reveal mb-3">
+        <div class="pill d-inline-flex align-items-center gap-2 mb-3">
+          <i class="fa-solid fa-circle-question"></i> FAQ
+        </div>
+        <h2 class="fw-extrabold" style="font-weight: 900; letter-spacing:-0.02em;">Common questions</h2>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="accordion reveal" id="faqAcc">
+            <div class="accordion-item glass2">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1" aria-expanded="false" aria-controls="q1" style="background:transparent;color:rgba(255,255,255,.92); border-radius: 16px;">
+                  Is this connected to a database?
+                </button>
+              </h2>
+              <div id="q1" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body" style="color: rgba(255,255,255,.66);">
+                  Not yet. This is a production-ready landing page UI demo. You can connect the Login/Register forms to your backend API and redirect by role.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item glass2 mt-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q2" aria-expanded="false" aria-controls="q2" style="background:transparent;color:rgba(255,255,255,.92); border-radius: 16px;">
+                  Can I use this on mobile?
+                </button>
+              </h2>
+              <div id="q2" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body" style="color: rgba(255,255,255,.66);">
+                  Yes. The layout is fully responsive with sticky navigation, offcanvas mobile menu, and touch-friendly buttons.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item glass2 mt-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3" aria-expanded="false" aria-controls="q3" style="background:transparent;color:rgba(255,255,255,.92); border-radius: 16px;">
+                  What roles are supported?
+                </button>
+              </h2>
+              <div id="q3" class="accordion-collapse collapse" data-bs-parent="#faqAcc">
+                <div class="accordion-body" style="color: rgba(255,255,255,.66);">
+                  Admin, Shop Owner, User, and Delivery Partner. Role selection is shown in the UI demo and can drive real redirects after authentication.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="glass p-4 p-lg-5 reveal" style="animation-delay:.05s;">
+            <div class="pill d-inline-flex align-items-center gap-2 mb-3">
+              <i class="fa-solid fa-headset"></i> Support
+            </div>
+            <h4 class="fw-extrabold" style="font-weight:900;">Need help building the full system?</h4>
+            <p style="color: rgba(255,255,255,.66);">
+              You can extend this landing page into a full app by adding:
+              authentication + JWT, role-based routing, CRUD modules for products/orders, and delivery tracking.
+            </p>
+
+            <div class="glass2 p-3">
+              <div class="d-flex flex-column gap-2">
+                <div class="d-flex align-items-center gap-2" style="color: rgba(255,255,255,.75);">
+                  <i class="fa-solid fa-check" style="color:#22c55e;"></i> Admin dashboard + analytics
+                </div>
+                <div class="d-flex align-items-center gap-2" style="color: rgba(255,255,255,.75);">
+                  <i class="fa-solid fa-check" style="color:#22c55e;"></i> Shop inventory & order acceptance
+                </div>
+                <div class="d-flex align-items-center gap-2" style="color: rgba(255,255,255,.75);">
+                  <i class="fa-solid fa-check" style="color:#22c55e;"></i> User ordering + tracking
+                </div>
+                <div class="d-flex align-items-center gap-2" style="color: rgba(255,255,255,.75);">
+                  <i class="fa-solid fa-check" style="color:#22c55e;"></i> Delivery partner workflow
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row gap-2 mt-3">
+              <button class="btnx btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register">
+                <i class="fa-solid fa-user-plus"></i> Register & Continue
+              </button>
+              <button class="btnx" type="button" onclick="showToast('Add your contact links in the footer (email/phone/WhatsApp).')">
+                <i class="fa-solid fa-pen-to-square"></i> Customize
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 py-lg-5">
+    <div class="container">
+      <div class="glass p-4 reveal">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-5">
+            <div class="d-flex align-items-center gap-2">
+              <div class="brand-badge rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2">
+                <span class="d-inline-grid place-items-center" style="width:30px;height:30px;border-radius:12px;background:rgba(6,18,26,.22);border:1px solid rgba(255,255,255,.14);">
+                  <i class="fa-solid fa-bolt" style="color:#d9f99d"></i>
+                </span>
+                <div class="d-flex flex-column lh-1">
+                  <span class="fw-extrabold" style="color:rgba(255,255,255,.92); font-weight:800;">Smart Local</span>
+                  <span class="small" style="color:rgba(255,255,255,.70); font-size:12px;">Essential Delivery</span>
+                </div>
+              </div>
+              <span class="pill d-none d-sm-inline-flex"><i class="fa-solid fa-lock me-1"></i> Secure login</span>
+            </div>
+            <p class="mb-0 mt-3" style="color: rgba(255,255,255,.62);">
+              © <span id="year"></span> Smart Local Essential Delivery System. All rights reserved.
+            </p>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="d-flex flex-wrap justify-content-lg-end gap-2">
+              <a class="btnx" href="#home"><i class="fa-solid fa-arrow-up"></i> Back to top</a>
+              <button class="btnx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="login"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+              <button class="btnx btn-primaryx" type="button" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-open="register"><i class="fa-solid fa-user-plus"></i> Register</button>
+              <a class="btnx" href="#features"><i class="fa-solid fa-sparkles"></i> Features</a>
+              <a class="btnx" href="#panels"><i class="fa-solid fa-grid-2"></i> Panels</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <div class="d-flex align-items-center gap-2">
+            <div class="ficon" style="width:44px;height:44px;">
+              <i class="fa-solid fa-fingerprint" style="color:#7dd3fc;"></i>
+            </div>
+            <div>
+              <div class="fw-extrabold" style="font-weight:900; letter-spacing:-0.02em;">Login / Register</div>
+              <div class="small" style="color: rgba(255,255,255,.66);">Role: <span id="authRoleLabel" class="fw-bold">User</span></div>
+            </div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body pt-3">
+          <ul class="nav nav-pills gap-2 mb-3" id="authTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#loginPane" type="button" role="tab" aria-controls="loginPane" aria-selected="true">
+                <i class="fa-solid fa-right-to-bracket me-2"></i>Login
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="pill" data-bs-target="#registerPane" type="button" role="tab" aria-controls="registerPane" aria-selected="false">
+                <i class="fa-solid fa-user-plus me-2"></i>Register
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <!-- Login -->
+            <div class="tab-pane fade show active" id="loginPane" role="tabpanel" aria-labelledby="login-tab">
+              <form id="loginForm" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input class="form-control" type="email" name="email" placeholder="name@example.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Password</label>
+                  <div class="input-group">
+                    <input id="loginPassword" class="form-control" type="password" name="password" placeholder="••••••••" required>
+                    <button class="btn btn-outline-light" type="button" onclick="togglePass('loginPassword', this)" style="border-radius:14px; border-color: rgba(255,255,255,.14);">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
+                  <div class="form-text">Demo only. Replace with real auth API.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Role</label>
+                  <select id="loginRole" class="form-select" required>
+                    <option>Admin</option>
+                    <option>Shop Owner</option>
+                    <option selected>User</option>
+                    <option>Delivery Partner</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Remember me</label>
+                  <select class="form-select">
+                    <option selected>Yes</option>
+                    <option>No</option>
+                  </select>
+                </div>
+                <div class="col-12 d-flex flex-column flex-sm-row gap-2 mt-1">
+                  <button class="btnx btn-primaryx flex-grow-1" type="submit">
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                  </button>
+                  <button class="btnx flex-grow-1" type="button" onclick="switchAuthTab('register')">
+                    <i class="fa-solid fa-user-plus"></i> Create new account
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Register -->
+            <div class="tab-pane fade" id="registerPane" role="tabpanel" aria-labelledby="register-tab">
+              <form id="registerForm" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Full Name</label>
+                  <input class="form-control" type="text" name="name" placeholder="Your name" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Phone</label>
+                  <input class="form-control" type="tel" name="phone" placeholder="+91 9XXXXXXXXX" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input class="form-control" type="email" name="email" placeholder="name@example.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Role</label>
+                  <select id="registerRole" class="form-select" required>
+                    <option>Admin</option>
+                    <option>Shop Owner</option>
+                    <option selected>User</option>
+                    <option>Delivery Partner</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Create Password</label>
+                  <div class="input-group">
+                    <input id="regPassword" class="form-control" type="password" name="password" placeholder="••••••••" minlength="6" required>
+                    <button class="btn btn-outline-light" type="button" onclick="togglePass('regPassword', this)" style="border-radius:14px; border-color: rgba(255,255,255,.14);">
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
+                  <div class="form-text">Minimum 6 characters.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Confirm Password</label>
+                  <input id="regPassword2" class="form-control" type="password" name="password2" placeholder="••••••••" minlength="6" required>
+                </div>
+                <div class="col-12 d-flex flex-column flex-sm-row gap-2 mt-1">
+                  <button class="btnx btn-primaryx flex-grow-1" type="submit">
+                    <i class="fa-solid fa-user-plus"></i> Register
+                  </button>
+                  <button class="btnx flex-grow-1" type="button" onclick="switchAuthTab('login')">
+                    <i class="fa-solid fa-right-to-bracket"></i> I already have an account
+                  </button>
+                </div>
+                <div class="col-12">
+                  <div class="small" style="color: rgba(255,255,255,.62);">
+                    By registering, you agree to your project's Terms & Privacy Policy (add links later).
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <hr style="border-color: rgba(255,255,255,.12);" class="my-4">
+
+          <div class="glass2 p-3 d-flex align-items-start gap-3">
+            <div class="ficon" style="background: rgba(251,113,133,.10); border-color: rgba(251,113,133,.25);">
+              <i class="fa-solid fa-triangle-exclamation" style="color:#fb7185;"></i>
+            </div>
+            <div>
+              <div class="fw-bold">Demo behavior</div>
+              <div class="small" style="color: rgba(255,255,255,.66);">
+                On submit, this demo shows a success toast and would normally redirect to the selected role dashboard.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btnx" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999;">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header" style="background:transparent; border-bottom:1px solid rgba(255,255,255,.10); color: rgba(255,255,255,.9);">
+        <strong class="me-auto"><i class="fa-solid fa-bolt me-2" style="color:#bef264;"></i>Smart Local</strong>
+        <small id="toastTime" style="color: rgba(255,255,255,.66);">now</small>
+        <button type="button" class="btn-close btn-close-white ms-2 mb-1" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body" id="toastBody">Ready.</div>
+    </div>
+  </div>
+
+  <script>
+    // Helpers
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12});
+    $$('.reveal').forEach(el=>io.observe(el));
+
+    // Role selection demo
+    let selectedRole = 'User';
+
+    function setRole(role){
+      selectedRole = role;
+      const roleText = $('#selectedRoleText');
+      const roleLabel = $('#authRoleLabel');
+      const loginRoleInline = $('#loginRoleInline');
+      const nextStep = $('#nextStepText');
+
+      if(roleText) roleText.textContent = role;
+      if(roleLabel) roleLabel.textContent = role;
+      if(loginRoleInline) loginRoleInline.textContent = role;
+
+      const msg = {
+        'Admin': 'Login to access the Admin Panel demo experience.',
+        'Shop Owner': 'Login to access the Shop Owner Panel demo experience.',
+        'User': 'Login to access the User Panel demo experience.',
+        'Delivery Partner': 'Login to access the Delivery Partner Panel demo experience.'
+      }[role] || 'Login to continue.';
+
+      if(nextStep) nextStep.textContent = msg;
+
+      // Sync selects
+      const loginSel = $('#loginRole');
+      const regSel = $('#registerRole');
+      if(loginSel) loginSel.value = role;
+      if(regSel) regSel.value = role;
+
+      // Subtle feedback
+      showToast(`Selected role: ${role}`);
+    }
+
+    // Buttons with data-role
+    $$('button[data-role]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        setRole(btn.getAttribute('data-role'));
+      });
+    });
+
+    // Auth modal open behavior
+    function switchAuthTab(which){
+      const tabBtn = which === 'register' ? $('#register-tab') : $('#login-tab');
+      if(tabBtn){
+        const t = new bootstrap.Tab(tabBtn);
+        t.show();
+      }
+    }
+    function openAuth(which){
+      switchAuthTab(which);
+      const modalEl = document.getElementById('authModal');
+      const m = bootstrap.Modal.getOrCreateInstance(modalEl);
+      m.show();
+    }
+
+    document.getElementById('authModal').addEventListener('show.bs.modal', (e)=>{
+      const trigger = e.relatedTarget;
+      const open = trigger?.getAttribute('data-auth-open');
+      if(open) switchAuthTab(open);
+
+      // Ensure role label is synced
+      $('#authRoleLabel').textContent = selectedRole;
+      $('#loginRoleInline').textContent = selectedRole;
+      $('#loginRole').value = selectedRole;
+      $('#registerRole').value = selectedRole;
+    });
+
+    // Sync role selects back to selectedRole
+    $('#loginRole')?.addEventListener('change', (e)=> setRole(e.target.value));
+    $('#registerRole')?.addEventListener('change', (e)=> setRole(e.target.value));
+
+    // Password toggle
+    function togglePass(id, btn){
+      const input = document.getElementById(id);
+      if(!input) return;
+      const isPass = input.type === 'password';
+      input.type = isPass ? 'text' : 'password';
+      btn.innerHTML = isPass ? '<i class="fa-solid fa-eye-slash"></i>' : '<i class="fa-solid fa-eye"></i>';
+    }
+
+    // Toast
+    function showToast(message){
+      $('#toastBody').textContent = message;
+      $('#toastTime').textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      const toastEl = document.getElementById('liveToast');
+      const t = bootstrap.Toast.getOrCreateInstance(toastEl, {delay: 3200});
+      t.show();
+    }
+
+    // Form demo submit
+    $('#loginForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const role = $('#loginRole').value;
+      selectedRole = role;
+      $('#authRoleLabel').textContent = role;
+
+      // In real app: call API -> on success redirect by role
+      showToast(`Login success (demo). Redirect to ${role} Panel.`);
+      bootstrap.Modal.getInstance(document.getElementById('authModal'))?.hide();
+    });
+
+    $('#registerForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const p1 = $('#regPassword').value.trim();
+      const p2 = $('#regPassword2').value.trim();
+      if(p1 !== p2){
+        showToast('Password mismatch. Please confirm correctly.');
+        $('#regPassword2').focus();
+        return;
+      }
+      const role = $('#registerRole').value;
+      selectedRole = role;
+      $('#authRoleLabel').textContent = role;
+
+      // In real app: call API -> verification -> redirect
+      showToast(`Registered successfully (demo). Redirect to ${role} Panel.`);
+      bootstrap.Modal.getInstance(document.getElementById('authModal'))?.hide();
+    });
+
+    // Init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Default role
+    setRole('User');
+  </script>
+</body>
+</html>
